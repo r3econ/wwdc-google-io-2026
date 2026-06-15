@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WWDC 2026 — New in iOS 27 &amp; Swift</title>
+  <meta name="description" content="A data-driven, source-cited field guide to everything new for developers in iOS 27 and Swift, announced at WWDC 2026." />
+  <link rel="preconnect" href="https://developer.apple.com" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__inner">
+      <p class="hero__eyebrow" data-bind="eyebrow"></p>
+      <h1 class="hero__title" data-bind="title">WWDC 2026</h1>
+      <p class="hero__tagline" data-bind="tagline"></p>
+      <p class="hero__disclaimer" data-bind="disclaimer"></p>
+      <div id="events" class="events" role="group" aria-label="Choose event"></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Controls -->
+    <section class="controls" aria-label="Filters">
+      <div class="controls__row">
+        <label class="search">
+          <span class="search__icon" aria-hidden="true">⌕</span>
+          <input id="search" type="search" placeholder="Search features…" aria-label="Search features" autocomplete="off" />
+        </label>
+      </div>
+
+      <div class="controls__row controls__row--filters">
+        <div id="category-filters" class="pills" role="group" aria-label="Filter by category"></div>
+        <div id="confidence-filters" class="pills pills--confidence" role="group" aria-label="Filter by confidence"></div>
+      </div>
+
+      <p id="result-count" class="result-count" aria-live="polite"></p>
+    </section>
+
+    <!-- Rendered content -->
+    <div id="content" class="sections"></div>
+
+    <!-- Empty state -->
+    <p id="empty" class="empty" hidden>No features match your filters.</p>
+
+    <!-- Error state -->
+    <div id="error" class="error" hidden>
+      <p><strong>Couldn't load the data.</strong></p>
+      <p>The data scripts didn't load — make sure the <code>data/</code> folder (with <code>events.js</code> and the per-event files) sits next to <code>index.html</code>.</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__note" data-bind="sourceNote"></p>
+    <p class="footer__meta">
+      <span data-bind="lastUpdatedLine"></span> ·
+      <a href="https://github.com/" id="repo-link" rel="noopener">View source</a>
+    </p>
+    <p class="footer__legend">
+      <span class="dot dot--high"></span> High confidence (Apple primary sources)
+      &nbsp;·&nbsp;
+      <span class="dot dot--medium"></span> Medium (tier-1 press / split verification)
+    </p>
+  </footer>
+
+  <!-- Card template -->
+  <template id="card-template">
+    <article class="card">
+      <header class="card__head">
+        <h3 class="card__title"></h3>
+        <span class="card__badge"></span>
+      </header>
+      <p class="card__summary"></p>
+      <div class="card__details" hidden></div>
+      <p class="card__note" hidden></p>
+      <div class="card__tags"></div>
+      <footer class="card__sources"></footer>
+      <button class="card__toggle" type="button" aria-expanded="false">Details &amp; sources</button>
+    </article>
+  </template>
+
+  <!-- Data: plain <script> tags so it works from file:// with no server -->
+  <script src="data/events.js" defer></script>
+  <script src="data/wwdc2026.js" defer></script>
+  <script src="data/googleio2026.js" defer></script>
+  <script src="data/srf-ideas.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
